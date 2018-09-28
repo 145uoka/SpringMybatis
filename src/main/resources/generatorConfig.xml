@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+
+	<!-- JDBCドライバーのパス -->
+	<classPathEntry
+		location="C:\pleiades\workspace\MyBatisSample\ENV\postgresql-42.2.4.jar" />
+
+	<context id="context" targetRuntime="MyBatis3">
+
+		<property name="javaFileEncoding" value="UTF-8" />
+
+		<!-- plugin -->
+		<plugin type="org.mybatis.generator.plugins.RowBoundsPlugin" />
+		<plugin type="org.mybatis.generator.plugins.ToStringPlugin" />
+
+		<!-- CustomPlugin -->
+		<!-- Daoクラスのクラス名変更（テーブル名Mapper => テーブル名Dao） -->
+		<plugin type="org.mybatis.plugin.MapperClassNamePlugin" />
+
+		<commentGenerator>
+			<!--コメント 有効にするとMapper及びModelにコメントが追記される。 -->
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+
+		<!-- JDBC設定 -->
+		<jdbcConnection driverClass="org.postgresql.Driver"
+			connectionURL="jdbc:postgresql://localhost:5432/postgres" userId="postgres"
+			password="postgres" />
+
+		<!-- Entity生成時の型変換 -->
+		<javaTypeResolver>
+			<!-- 数値型（Long, Integer, Short, etc.）をbigdecimalに変更するか -->
+			<property name="forceBigDecimals" value="true" />
+			<!-- 日付型をLocalDateとする -->
+			<property name="useJSR310Types" value="true" />
+		</javaTypeResolver>
+
+		<!-- Entityクラスの生成先 -->
+		<javaModelGenerator targetPackage="org.sample.mybatis.entity"
+			targetProject="src/main/java/" />
+
+		<!-- mapperXMLの生成先 -->
+		<sqlMapGenerator targetPackage="org/sample/mybatis/mapperXml"
+			targetProject="src/main/java/" />
+
+		<!-- daoクラスの生成先 -->
+		<javaClientGenerator targetPackage="org.sample.mybatis.dao"
+			targetProject="src/main/java/" type="XMLMAPPER" />
+
+		<!-- 生成対象のテーブル -->
+		<table schema="eventbase" tableName="%" />
+	</context>
+</generatorConfiguration>

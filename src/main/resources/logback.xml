@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE logback>
+<configuration>
+
+	<!-- ファイル出力 -->
+	<property name="LoggingDir" value="/var/log/sample/" />
+
+	<appender name="FILEOUT"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${LoggingDir}Bacchus_app.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${LoggingDir}appl-sm-manager.%d{yyyy-MM-dd}.zip</fileNamePattern>
+			<maxHistory>20</maxHistory>
+		</rollingPolicy>
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level 操作者ID=[%X{loginUserId}],操作者名=[%X{loginUserName}], \(%file:%line\) - %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level 操作者ID=[%X{loginUserId}],操作者名=[%X{loginUserName}], \(%file:%line\) - %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<!-- Application Loggers -->
+	<logger name="jp.co.myapp">
+		<level value="debug" />
+	</logger>
+
+	<!-- 3rdparty Loggers -->
+	<logger name="org.springframework.core" level="warn" />
+	<logger name="org.springframework.beans" level="warn" />
+	<logger name="org.springframework.context" level="warn" />
+	<logger name="org.springframework.web" level="warn" />
+
+	<!-- Root Logger -->
+	<!-- turn OFF all logging (children can override) -->
+	<root level="info">
+		<appender-ref ref="STDOUT" />
+	</root>
+
+</configuration>

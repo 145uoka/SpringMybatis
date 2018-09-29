@@ -1,0 +1,4 @@
+insert into eventbase.sample_tbl(sample_id,sample_name,sample_date,sample_num,sample_div,delete_flag,version_no,register_datetime,update_datetime) values (1,'やの','2018/03/23',1,'A',False,0,'2018-09-06T12:21:18','2018-09-06T12:21:18');
+insert into eventbase.sample_tbl(sample_id,sample_name,sample_date,sample_num,sample_div,delete_flag,version_no,register_datetime,update_datetime) values (2,'あひる','2018/03/23',2,'B',False,0,'2018-09-06T12:21:18','2018-09-06T12:21:18');
+insert into eventbase.sample_tbl(sample_id,sample_name,sample_date,sample_num,sample_div,delete_flag,version_no,register_datetime,update_datetime) values (3,'がちょう','2018/03/23',3,'C',False,0,'2018-09-06T12:21:18','2018-09-06T12:21:18');
+commit;
